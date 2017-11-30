@@ -22,6 +22,8 @@ class TestEs_parse(unittest.TestCase):
 
     def teststring(self):
         print("\n------------test string----------")
+        self.assertEqual(self.string("\" \\\\line1\\nline2 \""), JTYPE.STRING)         # input \\  is \
+        self.assertEqual(self.string("\"  abc\\def\""), JTYPE.STRING)
         self.assertEqual(self.string("\"      null\""), JTYPE.STRING)
         self.assertEqual(self.string("\"hello world!\""), JTYPE.STRING)
 
@@ -34,6 +36,18 @@ class TestEs_parse(unittest.TestCase):
         self.assertEqual(self.array("[[11,12],[21,22]]"), JTYPE.ARRAY)
         self.assertEqual(self.array("[[11,[111,112],13],[21,22]]"), JTYPE.ARRAY)
 
+    def testobject(self):
+        print("\n------------test object----------")
+        # self.assertEqual(self.array("{\"name\":\"zz\",\"age\":24}"), JTYPE.OBJECT)
+        # self.assertEqual(self.array("{\"name\":\"zz\",\"daylist\":[6,7]}"), JTYPE.OBJECT)
+        self.assertEqual(self.array("{\"name\":{\"firstname\":\"zhao\",\"lastname\":\"zhang\"},\"age\":24}"), JTYPE.OBJECT)
+
+
+    def object(self,str):
+        t = es_value(JTYPE.UNKNOW)
+        print("input string = " + str)
+        print(es_parse(t, str), gettype(t), getelement(t), "\n")
+        return gettype(t)
 
     def array(self, str):
         t = es_value(JTYPE.UNKNOW)

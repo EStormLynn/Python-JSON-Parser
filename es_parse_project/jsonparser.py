@@ -177,16 +177,39 @@ def es_parse_number(context, typevalue):
 
 
 def es_parse_string(context, typevalue):
-    pos = 1
+    pos = context.pos + 1
     try:
         while context.json[pos] != '"':
-            pos += 1
-            # if context.json[pos] == '\\':
+            # 处理转意字符
+            if context.json[pos] == '\\':
+                if context.json[pos + 1] == '\\':
+                    typevalue.str += '\\'
+                elif context.json[pos + 1] == '\"':       # "
+                    typevalue.str += '\"'
+                elif context.json[pos + 1] == 'n':
+                    typevalue.str += '\n'
+                elif context.json[pos + 1] == 'b':
+                    typevalue.str += '\b'
+                elif context.json[pos + 1] == 'f':
+                    typevalue.str += '\f'
+                elif context.json[pos + 1] == 'r':
+                    typevalue.str += '\r'
+                elif context.json[pos + 1] == 't':
+                    typevalue.str += '\t'
+                else:
+                    typevalue.str += ''.join(context.json[pos])
+                    pos += 1
+                    continue
+                pos += 2
+            else:
+                typevalue.str += ''.join(context.json[pos])
+                pos += 1
 
     finally:
         typevalue.type = JTYPE.STRING
-        typevalue.str = ''.join(context.json[1:pos])
-        context.json = context.json[pos:]
+        # typevalue.str = ''.join(context.json[context.pos + 1:pos])
+        context.json = context.json[pos + 1:]
+        context.pos = 1
         return PARSE_STATE.OK
 
 
@@ -224,6 +247,44 @@ def es_parse_array(context, typevalue):
 
 
 def es_parse_object(context, typevalue):
+    pos = context.pos + 1
+    context.pos = pos
+    obj = {}
+    es_parse_whitespace(context)
+
+    if context.json[pos] == '}':
+        typevalue.type == JTYPE.OBJECT
+        typevalue.obj == {}
+        return PARSE_STATE.OK
+    while 1 :
+        son_key_typevalue = es_value(JTYPE.UNKNOW)
+        res = es_parse_value(context, son_key_typevalue)
+        if res != PARSE_STATE.OK:
+            break
+        es_parse_whitespace(context)
+        pos = 0
+
+        son_value_typevalue = es_value(JTYPE.UNKNOW)
+        if context.json[pos] == ':':
+            res2 = es_parse_value(context,son_value_typevalue)
+            es_parse_whitespace(context)
+
+
+        if context.json[pos] == ',':
+            pos += 1
+            context.pos = pos
+        elif context.json[pos] == '}':
+            pos += 1
+            context.pos = pos
+            context.json = context.json[pos:]
+            typevalue.obj[getelement(son_key_typevalue)] = getelement(son_value_typevalue)
+            typevalue.type = JTYPE.OBJECT
+            return PARSE_STATE.OK
+
+        typevalue.obj[getelement(son_key_typevalue)] = getelement(son_value_typevalue)
+
+        # typevalue.array.append(getelement(son_key_typevalue))
+
     pass
 
 
