@@ -1,6 +1,6 @@
 import json
 from enum import Enum
-
+# -*- coding:utf-8 -*-
 # n ➔ literal
 # t ➔ true
 # f ➔ false
@@ -9,12 +9,6 @@ from enum import Enum
 # [ ➔ array
 # { ➔ object
 
-# a = {"name": "zz", "age": 24}
-# b = json.dumps(a)
-# c = json.loads(b)
-# print(type(a), type(b), type(c))
-#
-# print(a, b, c)
 
 # json的数据格式
 class JTYPE(Enum):
@@ -58,18 +52,10 @@ def is1t9(ch):
     return 1 if '1' <= ch <= '9' else 0
 
 
-# 获取类型
 def gettype(v):
     assert v
     return v.type
 
-def getstring(typevalue):
-    if typevalue.type == JTYPE.STRING:
-        return typevalue.str
-
-def getnumber(typevalue):
-    if typevalue.type == JTYPE.NUMBER:
-        return typevalue.num
 
 def getelement(typevalue):
     if typevalue.type == JTYPE.STRING:
@@ -87,12 +73,16 @@ def getelement(typevalue):
     if typevalue.type == JTYPE.NULL:
         return "null"
 
+
 def es_parse_whitespace(context):
     if not context.json:
         return
     pos = 0
-    while context.json[pos] == ' ' or context.json[pos] == '\t' or context.json[pos] == '\n':
-        pos += 1
+    while pos < len(context.json):
+        if context.json[pos] == ' ' or context.json[pos] == '\t' or context.json[pos] == '\n':
+            pos += 1
+        else:
+            break
     context.json = context.json[pos:]
 
 
@@ -133,7 +123,7 @@ def es_parse_literal(context, typevalue, literal, type):
 
 
 def es_parse_number(context, typevalue):
-    starpos =context.pos
+    starpos = context.pos
     pos = context.pos
     try:
         isint = 1
@@ -207,20 +197,24 @@ def es_parse_string(context, typevalue):
 
     finally:
         typevalue.type = JTYPE.STRING
-        # typevalue.str = ''.join(context.json[context.pos + 1:pos])
         context.json = context.json[pos + 1:]
         context.pos = 1
+        if '\\u' in typevalue.str:
+            typevalue.str = typevalue.str.encode('latin-1').decode('unicode_escape')
         return PARSE_STATE.OK
 
 
 def es_parse_array(context, typevalue):
-    pos = context.pos + 1
-    context.pos = pos
+    context.pos += 1
+    while context.json[context.pos] == ' ' or context.json[context.pos] == '\t' or context.json[context.pos] == '\n':
+        context.pos += 1
+    pos = context.pos
+
     if context.json[pos] == ']':
         typevalue.type == JTYPE.ARRAY
-        typevalue.array == []
         return PARSE_STATE.OK
-    while 1 :
+    while 1:
+        es_parse_whitespace(context)
         son_typevalue = es_value(JTYPE.UNKNOW)
         res = es_parse_value(context, son_typevalue)
         if res != PARSE_STATE.OK:
@@ -230,6 +224,8 @@ def es_parse_array(context, typevalue):
 
         if context.json[pos] == ',':
             pos += 1
+            while context.json[pos] == ' ' or context.json[pos] == '\t' or context.json[pos] == '\n':
+                pos += 1
             context.pos = pos
         elif context.json[pos] == ']':
             pos += 1
@@ -240,23 +236,19 @@ def es_parse_array(context, typevalue):
             return PARSE_STATE.OK
 
         typevalue.array.append(getelement(son_typevalue))
-
-
-
-    pass
+    return PARSE_STATE.INVALID_VALUE
 
 
 def es_parse_object(context, typevalue):
-    pos = context.pos + 1
-    context.pos = pos
-    obj = {}
-    es_parse_whitespace(context)
+    context.pos += 1
+    while context.json[context.pos] == ' ' or context.json[context.pos] == '\t' or context.json[context.pos] == '\n':
+        context.pos += 1
+    pos = context.pos
 
     if context.json[pos] == '}':
         typevalue.type == JTYPE.OBJECT
-        typevalue.obj == {}
         return PARSE_STATE.OK
-    while 1 :
+    while 1:
         son_key_typevalue = es_value(JTYPE.UNKNOW)
         res = es_parse_value(context, son_key_typevalue)
         if res != PARSE_STATE.OK:
@@ -266,12 +258,17 @@ def es_parse_object(context, typevalue):
 
         son_value_typevalue = es_value(JTYPE.UNKNOW)
         if context.json[pos] == ':':
-            res2 = es_parse_value(context,son_value_typevalue)
+            while context.json[context.pos] == ' ' or context.json[context.pos] == '\t' or context.json[context.pos] == '\n':
+                context.pos += 1
+            res2 = es_parse_value(context, son_value_typevalue)
+            if res2 != PARSE_STATE.OK:
+                break
             es_parse_whitespace(context)
-
 
         if context.json[pos] == ',':
             pos += 1
+            while context.json[pos] == ' ' or context.json[pos] == '\t' or context.json[pos] == '\n':
+                pos += 1
             context.pos = pos
         elif context.json[pos] == '}':
             pos += 1
@@ -282,8 +279,6 @@ def es_parse_object(context, typevalue):
             return PARSE_STATE.OK
 
         typevalue.obj[getelement(son_key_typevalue)] = getelement(son_value_typevalue)
-
-        # typevalue.array.append(getelement(son_key_typevalue))
 
     pass
 
@@ -311,24 +306,55 @@ def es_parse_value(context, typevalue):
 
 
 # 解析json
-def es_parse(typevalue,j_string):
+def es_parse(typevalue, j_string):
     assert typevalue
 
     c = context(j_string)
     v = typevalue
 
     es_parse_whitespace(c)
-    res = es_parse_value(c,v)
+    res = es_parse_value(c, v)
 
     if res == PARSE_STATE.OK:
         es_parse_whitespace(c)
-        if c.json :
+        if c.json:
             ret = PARSE_STATE.ROOT_NOT_SINGULAR
 
     return res
 
 
-# str = "[1,3]"
-# t = es_value(JTYPE.UNKNOW)
-# print("input string = " + str)
-# print(es_parse(t, str), gettype(t),"\n")
+if __name__ == '__main__':
+    while 1:
+        str = input()
+        if len(str) == 0:
+            continue
+        t = es_value(JTYPE.UNKNOW)
+        print("input string = " + str)
+        print(es_parse(t, str), gettype(t))
+        str2 = getelement(t)
+        print("output = ", getelement(t), "\n")
+
+
+
+# {    "title": "Design Patterns",   "subtitle": "Elements of Reusable Object-Oriented Software",   "author": [        "Erich Gamma",        "Richard Helm",        "Ralph Johnson",        "John Vlissides"  ],    "year": 2009,    "weight": 1.8,    "hardcover": true,    "publisher": {        "Company": "Pearson Education",        "Country": "India"    },    "website": null}
+
+#  "\u751F\u5316\u5371\u673A"
+
+# {
+#     "title": "Design Patterns",
+#     "subtitle": "Elements of Reusable Object-Oriented Software",
+#     "author": [
+#         "Erich Gamma",
+#         "Richard Helm",
+#         "Ralph Johnson",
+#         "John Vlissides"
+#     ],
+#     "year": 2009,
+#     "weight": 1.8,
+#     "hardcover": true,
+#     "publisher": {
+#         "Company": "Pearson Education",
+#         "Country": "India"
+#     },
+#     "website": null
+# }

@@ -14,13 +14,15 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/es_parse_project$Unittest_TestEs_parse_testarray.coverage" NAME="Unittest TestEs_parse.testarray Coverage Results" MODIFIED="1512027652089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/es_parse_project$Unittests_in_test_es_parse.coverage" NAME="Unittests in test_es_parse Coverage Results" MODIFIED="1512027889618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/es_parse_project$Unittests_in_test_es_parse.coverage" NAME="Unittests in test_es_parse Coverage Results" MODIFIED="1512054361755" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/project$Unittest_TestEs_parse_testnull.coverage" NAME="Unittest TestEs_parse.testnull Coverage Results" MODIFIED="1511946421662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/project$Unittest_TestEs_parse_testarray.coverage" NAME="Unittest TestEs_parse.testarray Coverage Results" MODIFIED="1511960872691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/project$Unittest_TestEs_parse_testnum.coverage" NAME="Unittest TestEs_parse.testnum Coverage Results" MODIFIED="1511946255895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/es_parse_project$Unittest_TestEs_parse_testobject.coverage" NAME="Unittest TestEs_parse.testobject Coverage Results" MODIFIED="1512023842562" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/es_parse_project$Unittest_TestEs_parse_teststring.coverage" NAME="Unittest TestEs_parse.teststring Coverage Results" MODIFIED="1512032315293" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/es_parse_project$Unittest_TestEs_parse_testobject.coverage" NAME="Unittest TestEs_parse.testobject Coverage Results" MODIFIED="1512045232184" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/project$Unittests_in_test_es_parse.coverage" NAME="Unittests in test_es_parse Coverage Results" MODIFIED="1511962284129" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/project$Unittest_TestEs_parse_testarray.coverage" NAME="Unittest TestEs_parse.testarray Coverage Results" MODIFIED="1511960872691" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/es_parse_project$Unittest_TestEs_parse_testnum.coverage" NAME="Unittest TestEs_parse.testnum Coverage Results" MODIFIED="1512046311802" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/es_parse_project$jsonparser.coverage" NAME="jsonparser Coverage Results" MODIFIED="1512054502732" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/project$Unittest_TestEs_parse_testnum.coverage" NAME="Unittest TestEs_parse.testnum Coverage Results" MODIFIED="1511946255895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/es_parse_project$Unittest_TestEs_parse_teststring.coverage" NAME="Unittest TestEs_parse.teststring Coverage Results" MODIFIED="1512045245283" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/project$Unittest_TestEs_parse_teststring.coverage" NAME="Unittest TestEs_parse.teststring Coverage Results" MODIFIED="1511959302707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/project$test.coverage" NAME="jsonparser Coverage Results" MODIFIED="1511961759274" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/project$Unittest_TestEs_parse_test01.coverage" NAME="Unittest TestEs_parse.test01 Coverage Results" MODIFIED="1511943207984" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -37,13 +39,24 @@
       <file leaf-file-name="jsonparser.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/jsonparser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="95" selection-end-column="37" />
+            <state relative-caret-position="223">
+              <caret line="340" column="29" selection-start-line="340" selection-start-column="29" selection-end-line="340" selection-end-column="29" />
               <folding>
-                <element signature="e#1902#2102#0" expanded="false" />
-                <element signature="e#2148#2345#0" expanded="false" />
-                <element signature="e#2392#2591#0" expanded="false" />
+                <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#1675#1875#0" expanded="false" />
+                <element signature="e#1921#2118#0" expanded="false" />
+                <element signature="e#2165#2364#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="codecs.py" pinned="false" current-in-tab="false">
+        <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/codecs.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="299" column="11" selection-start-line="299" selection-start-column="11" selection-end-line="299" selection-end-column="11" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -51,8 +64,8 @@
       <file leaf-file-name="test_es_parse.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_es_parse.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="24" />
+            <state relative-caret-position="139">
+              <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -74,8 +87,8 @@
       <list>
         <option value="$PROJECT_DIR$/parseState.py" />
         <option value="$PROJECT_DIR$/test.py" />
-        <option value="$PROJECT_DIR$/jsonparser.py" />
         <option value="$PROJECT_DIR$/test_es_parse.py" />
+        <option value="$PROJECT_DIR$/jsonparser.py" />
       </list>
     </option>
   </component>
@@ -86,9 +99,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="41" />
+    <option name="x" value="44" />
     <option name="y" value="23" />
-    <option name="width" value="1399" />
+    <option name="width" value="1396" />
     <option name="height" value="877" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -116,7 +129,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -138,6 +150,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -148,7 +161,7 @@
     <property name="SearchEverywhereHistoryKey" value="creattest&#9;null&#9;null&#10;key&#9;ACTION&#9;ChangeKeymap" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Python tests.Unittest TestEs_parse.teststring">
+  <component name="RunManager" selected="Python.jsonparser">
     <configuration default="false" name="jsonparser" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -183,29 +196,6 @@
       <option name="METHOD_NAME" value="" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittest TestEs_parse.testarray" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="project" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_es_parse.py" />
-      <option name="CLASS_NAME" value="TestEs_parse" />
-      <option name="METHOD_NAME" value="testarray" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
       <option name="PUREUNITTEST" value="true" />
@@ -250,6 +240,29 @@
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_es_parse.py" />
       <option name="CLASS_NAME" value="TestEs_parse" />
       <option name="METHOD_NAME" value="testobject" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest TestEs_parse.testnum" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="project" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_es_parse.py" />
+      <option name="CLASS_NAME" value="TestEs_parse" />
+      <option name="METHOD_NAME" value="testnum" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -470,17 +483,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.jsonparser" />
       <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_es_parse" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest TestEs_parse.testarray" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest TestEs_parse.teststring" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest TestEs_parse.testobject" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest TestEs_parse.teststring" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest TestEs_parse.testobject" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest TestEs_parse.testnum" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest TestEs_parse.teststring" />
+        <item index="0" class="java.lang.String" itemvalue="Python.jsonparser" />
         <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_es_parse" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest TestEs_parse.testarray" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest TestEs_parse.testobject" />
-        <item index="4" class="java.lang.String" itemvalue="Python.jsonparser" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest TestEs_parse.testnum" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest TestEs_parse.teststring" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest TestEs_parse.testobject" />
       </list>
     </recent_temporary>
   </component>
@@ -501,48 +514,49 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittest_TestEs_parse_teststring - 2017.11.30 at 16h 55m 49s.xml">
-      <configuration name="Unittest TestEs_parse.teststring" configurationId="tests" />
+    <history-entry file="Unittests_in_test_es_parse - 2017.11.30 at 21h 14m 39s.xml">
+      <configuration name="Unittests in test_es_parse" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_TestEs_parse_teststring - 2017.11.30 at 16h 56m 25s.xml">
-      <configuration name="Unittest TestEs_parse.teststring" configurationId="tests" />
+    <history-entry file="Unittests_in_test_es_parse - 2017.11.30 at 21h 14m 55s.xml">
+      <configuration name="Unittests in test_es_parse" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_TestEs_parse_teststring - 2017.11.30 at 16h 57m 34s.xml">
-      <configuration name="Unittest TestEs_parse.teststring" configurationId="tests" />
+    <history-entry file="Unittests_in_test_es_parse - 2017.11.30 at 21h 17m 26s.xml">
+      <configuration name="Unittests in test_es_parse" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_TestEs_parse_teststring - 2017.11.30 at 16h 57m 51s.xml">
-      <configuration name="Unittest TestEs_parse.teststring" configurationId="tests" />
+    <history-entry file="Unittests_in_test_es_parse - 2017.11.30 at 21h 39m 27s.xml">
+      <configuration name="Unittests in test_es_parse" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_TestEs_parse_teststring - 2017.11.30 at 16h 58m 04s.xml">
-      <configuration name="Unittest TestEs_parse.teststring" configurationId="tests" />
+    <history-entry file="Unittests_in_test_es_parse - 2017.11.30 at 21h 39m 43s.xml">
+      <configuration name="Unittests in test_es_parse" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_TestEs_parse_teststring - 2017.11.30 at 16h 58m 23s.xml">
-      <configuration name="Unittest TestEs_parse.teststring" configurationId="tests" />
+    <history-entry file="Unittests_in_test_es_parse - 2017.11.30 at 22h 30m 42s.xml">
+      <configuration name="Unittests in test_es_parse" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_TestEs_parse_teststring - 2017.11.30 at 16h 58m 35s.xml">
-      <configuration name="Unittest TestEs_parse.teststring" configurationId="tests" />
+    <history-entry file="Unittests_in_test_es_parse - 2017.11.30 at 22h 34m 55s.xml">
+      <configuration name="Unittests in test_es_parse" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_TestEs_parse_teststring - 2017.11.30 at 17h 08m 00s.xml">
-      <configuration name="Unittest TestEs_parse.teststring" configurationId="tests" />
+    <history-entry file="Unittests_in_test_es_parse - 2017.11.30 at 23h 05m 05s.xml">
+      <configuration name="Unittests in test_es_parse" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_TestEs_parse_teststring - 2017.11.30 at 17h 08m 12s.xml">
-      <configuration name="Unittest TestEs_parse.teststring" configurationId="tests" />
+    <history-entry file="Unittests_in_test_es_parse - 2017.11.30 at 23h 05m 31s.xml">
+      <configuration name="Unittests in test_es_parse" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_es_parse - 2017.11.30 at 15h 44m 49s.xml">
+    <history-entry file="Unittests_in_test_es_parse - 2017.11.30 at 23h 06m 02s.xml">
       <configuration name="Unittests in test_es_parse" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="41" y="23" width="1399" height="877" extended-state="0" />
-    <editor active="false" />
+    <frame x="44" y="23" width="1396" height="877" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14148858" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14327918" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32909605" sideWeight="0.503231" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32738853" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29299363" sideWeight="0.49676898" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29808918" sideWeight="0.49676898" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32909605" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -552,7 +566,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32768363" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -572,28 +585,86 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/test_es_parse.py</url>
-          <line>80</line>
+          <line>81</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/jsonparser.py</url>
-          <line>254</line>
-          <option name="timeStamp" value="35" />
+          <line>169</line>
+          <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/jsonparser.py</url>
-          <line>179</line>
-          <option name="timeStamp" value="38" />
+          <line>149</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/jsonparser.py</url>
+          <line>247</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/jsonparser.py</url>
+          <line>286</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test_es_parse.py</url>
+          <line>42</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/jsonparser.py</url>
+          <line>212</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/jsonparser.py</url>
+          <line>199</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/jsonparser.py</url>
+          <line>334</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/jsonparser.py</url>
+          <line>328</line>
+          <option name="timeStamp" value="56" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="41" />
+      <option name="time" value="58" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/jsonparser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3735">
+          <caret line="268" column="36" selection-start-line="268" selection-start-column="36" selection-end-line="268" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#1675#1875#0" expanded="false" />
+            <element signature="e#1921#2118#0" expanded="false" />
+            <element signature="e#2165#2364#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_es_parse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test_es_parse.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -609,9 +680,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1902#2102#0" expanded="false" />
-            <element signature="e#2148#2345#0" expanded="false" />
-            <element signature="e#2392#2591#0" expanded="false" />
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#1675#1875#0" expanded="false" />
+            <element signature="e#1921#2118#0" expanded="false" />
+            <element signature="e#2165#2364#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -659,13 +731,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="315" column="30" selection-start-line="315" selection-start-column="30" selection-end-line="315" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/case.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-6843">
@@ -674,10 +739,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/codecs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="299" column="11" selection-start-line="299" selection-start-column="11" selection-end-line="299" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test_es_parse.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="24" />
+        <state relative-caret-position="139">
+          <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
@@ -686,12 +759,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jsonparser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="95" selection-end-column="37" />
+        <state relative-caret-position="223">
+          <caret line="340" column="29" selection-start-line="340" selection-start-column="29" selection-end-line="340" selection-end-column="29" />
           <folding>
-            <element signature="e#1902#2102#0" expanded="false" />
-            <element signature="e#2148#2345#0" expanded="false" />
-            <element signature="e#2392#2591#0" expanded="false" />
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#1675#1875#0" expanded="false" />
+            <element signature="e#1921#2118#0" expanded="false" />
+            <element signature="e#2165#2364#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -26,21 +26,23 @@ class TestEs_parse(unittest.TestCase):
         self.assertEqual(self.string("\"  abc\\def\""), JTYPE.STRING)
         self.assertEqual(self.string("\"      null\""), JTYPE.STRING)
         self.assertEqual(self.string("\"hello world!\""), JTYPE.STRING)
+        self.assertEqual(self.string("\"   \u751F\u5316\u5371\u673A  \""), JTYPE.STRING)
 
     def testarray(self):
         print("\n------------test array----------")
         self.assertEqual(self.array("[13,2,3]"), JTYPE.ARRAY)
         self.assertEqual(self.array("[13,[2,3]]"), JTYPE.ARRAY)
-        self.assertEqual(self.array("[13,[2,3],[4,5]]"), JTYPE.ARRAY)
+        self.assertEqual(self.array("[  13  , [ 2, 3],[4,5]]"), JTYPE.ARRAY)
         self.assertEqual(self.array("[13,true]"), JTYPE.ARRAY)
         self.assertEqual(self.array("[[11,12],[21,22]]"), JTYPE.ARRAY)
-        self.assertEqual(self.array("[[11,[111,112],13],[21,22]]"), JTYPE.ARRAY)
+        self.assertEqual(self.array("[[11,  [111  ,112],  13],[21,22]]"), JTYPE.ARRAY)
+        self.assertEqual(self.array("[[11,{\"name\":\"zz\",\"age\":24},13],[21,22]]"), JTYPE.ARRAY)
 
     def testobject(self):
         print("\n------------test object----------")
-        # self.assertEqual(self.array("{\"name\":\"zz\",\"age\":24}"), JTYPE.OBJECT)
-        # self.assertEqual(self.array("{\"name\":\"zz\",\"daylist\":[6,7]}"), JTYPE.OBJECT)
-        self.assertEqual(self.array("{\"name\":{\"firstname\":\"zhao\",\"lastname\":\"zhang\"},\"age\":24}"), JTYPE.OBJECT)
+        self.assertEqual(self.array("{\"name\":\"zz\",\"age\":24}"), JTYPE.OBJECT)
+        self.assertEqual(self.array("{\"name\":\"zz\",\"daylist\":[6,7]}"), JTYPE.OBJECT)
+        self.assertEqual(self.array("{\"name\":{\"firstname\":\"zhao\",\"lastname\":\"zhang\"},\"age\":24,\"frient\":[1,2,3]}"), JTYPE.OBJECT)
 
 
     def object(self,str):
@@ -59,7 +61,7 @@ class TestEs_parse(unittest.TestCase):
     def string(self, str):
         t = es_value(JTYPE.UNKNOW)
         print("input string = " + str)
-        print(es_parse(t, str), gettype(t), getstring(t), "\n")
+        print(es_parse(t, str), gettype(t), getelement(t), "\n")
         return gettype(t)
 
     def literal(self, str):
@@ -72,9 +74,8 @@ class TestEs_parse(unittest.TestCase):
     def num(self,str):
         t = es_value(JTYPE.UNKNOW)
         print("input string = " + str)
-        print(es_parse(t, str), gettype(t), getnumber(t), "\n")
-        return getnumber(t)
-
+        print(es_parse(t, str), gettype(t), getelement(t), "\n")
+        return getelement(t)
 
 
 if __name__ == '__main__':
