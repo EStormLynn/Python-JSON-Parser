@@ -48,20 +48,20 @@ class TestEs_parse(unittest.TestCase):
     def object(self,str):
         t = es_value(JTYPE.UNKNOW)
         print("input string = " + str)
-        print(es_parse(t, str), gettype(t), getelement(t), "\n")
+        print(es_parse(t, str), gettype(t), get_element(t), "\n")
         return gettype(t)
 
     def array(self, str):
         t = es_value(JTYPE.UNKNOW)
         print("input string = " + str)
-        print(es_parse(t, str), gettype(t), getelement(t), "\n")
+        print(es_parse(t, str), gettype(t), get_element(t), "\n")
         return gettype(t)
 
 
     def string(self, str):
         t = es_value(JTYPE.UNKNOW)
         print("input string = " + str)
-        print(es_parse(t, str), gettype(t), getelement(t), "\n")
+        print(es_parse(t, str), gettype(t), get_element(t), "\n")
         return gettype(t)
 
     def literal(self, str):
@@ -74,9 +74,10 @@ class TestEs_parse(unittest.TestCase):
     def num(self,str):
         t = es_value(JTYPE.UNKNOW)
         print("input string = " + str)
-        print(es_parse(t, str), gettype(t), getelement(t), "\n")
-        return getelement(t)
+        print(es_parse(t, str), gettype(t), get_element(t), "\n")
+        return get_element(t)
 
 
 if __name__ == '__main__':
     unittest.main()
+
