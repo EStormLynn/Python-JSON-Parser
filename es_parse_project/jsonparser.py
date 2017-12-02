@@ -1,6 +1,8 @@
 # -*- coding:utf-8 -*-
 import re
+import json
 from enum import Enum
+
 
 # n ➔ literal
 # t ➔ true
@@ -11,16 +13,14 @@ from enum import Enum
 # { ➔ object
 
 
-# json的数据格式
-class JTYPE(Enum):
-    NUMBER = 0
-    STRING = 1
-    ARRAY = 2
-    OBJECT = 3
-    NULL = 4
-    FALSE = 5
-    TRUE = 6
-    UNKNOW = 7
+JTYPE_NUMBER = 0
+JTYPE_STRING = 1
+JTYPE_ARRAY = 2
+JTYPE_OBJECT = 3
+JTYPE_NULL = 4
+JTYPE_FALSE = 5
+JTYPE_TRUE = 6
+JTYPE_UNKNOW = 7
 
 state_dict = {1: "ok",
               2: "expect_value",
@@ -41,12 +41,17 @@ PARSE_STATE_EXPECT_VALUE = 2
 PARSE_STATE_INVALID_VALUE = 3
 PARSE_STATE_ROOT_NOT_SINGULAR = 4
 
+class MyException(Exception):
+    def __init__(self, message):
+        Exception.__init__(self)
+        self.message = message
+
 
 class EsValue(object):
     __slots__ = ('type', 'num', 'str', 'array', 'obj')
     
-    def __init__(self, mytype):
-        self.type = mytype
+    def __init__(self):
+        self.type = JTYPE_UNKNOW
 
 
 class Context(object):
@@ -74,21 +79,21 @@ def get_element(e_value):
     :return: 返回value对象的类型 值
     """
 
-    if e_value.type == JTYPE.STRING:
+    if e_value.type == JTYPE_STRING:
         return e_value.str
-    if e_value.type == JTYPE.NUMBER:
+    if e_value.type == JTYPE_NUMBER:
         return e_value.num
-    if e_value.type == JTYPE.ARRAY:
+    if e_value.type == JTYPE_ARRAY:
         return e_value.array
-    if e_value.type == JTYPE.OBJECT:
+    if e_value.type == JTYPE_OBJECT:
         return e_value.obj
-    if e_value.type == JTYPE.TRUE:
+    if e_value.type == JTYPE_TRUE:
         return "true"
-    if e_value.type == JTYPE.FALSE:
+    if e_value.type == JTYPE_FALSE:
         return "false"
-    if e_value.type == JTYPE.NULL:
+    if e_value.type == JTYPE_NULL:
         return "null"
-    if e_value.type == JTYPE.UNKNOW:
+    if e_value.type == JTYPE_UNKNOW:
         return "unknow"
 
 
@@ -104,33 +109,33 @@ def es_parse_whitespace(context):
     context.json = context.json[pos:]
 
 
-def es_parse_literal(context, e_value, literal, mytype):
+def es_parse_literal(context, literal, mytype):
     """ 解析字面量，包括null false true
 
     :param context: string list
-    :param e_value: 字符串解析后对应的 结构对象
     :param literal: 字面量匹配的 字符串
     :param mytype: 字面量的数据类型
     :return:
     """
+    e_value = EsValue()
     if ''.join(context.json[context.pos:context.pos + len(literal)]) != literal:
-        return PARSE_STATE_INVALID_VALUE
-    else:
-        e_value.type = mytype
-        context.json = context.json[context.pos + len(literal):]
-        return PARSE_STATE_OK
+        raise MyException("PARSE_STATE_INVALID_VALUE, literal error")
+    e_value.type = mytype
+    context.json = context.json[context.pos + len(literal):]
+    return PARSE_STATE_OK, e_value
 
 
-def es_parse_number(context, e_value):
+def es_parse_number(context):
+    e_value = EsValue()
     star_pos = context.pos
     pos = context.pos
     isint = 1
     try:
-        if re.compile('[-+0]?').match(context.json[pos]):   # 首位[+-0]
+        if re.compile('[-+0]+').match(context.json[pos]):   # 首位[+-0]
             pos += 1
 
         elif not is1t9(context.json[pos]):
-            return PARSE_STATE_INVALID_VALUE
+            raise MyException("PARSE_STATE_INVALID_VALUE, number error")
 
         while isdigit(context.json[pos]):
             pos += 1
@@ -139,7 +144,8 @@ def es_parse_number(context, e_value):
             isint = 0
             pos += 1
             if not isdigit(context.json[pos]):
-                return PARSE_STATE_INVALID_VALUE
+                raise MyException("PARSE_STATE_INVALID_VALUE, number error")
+                # return PARSE_STATE_INVALID_VALUE, e_value
             while isdigit(context.json[pos]):
                 if pos >= len(context.json):
                     break
@@ -148,24 +154,29 @@ def es_parse_number(context, e_value):
         if re.compile('[Ee]+').match(context.json[pos]):
             pos += 1
             if not isdigit(context.json[pos]):
-                return PARSE_STATE_INVALID_VALUE
+                raise MyException("PARSE_STATE_INVALID_VALUE, number error")
+                # return PARSE_STATE_INVALID_VALUE, e_value
             while isdigit(context.json[pos]):
                 pos += 1
+        else:
+            raise MyException("PARSE_STATE_INVALID_VALUE, number error")
+
     finally:
         numstr = ''.join(context.json[star_pos:pos])
         e_value.num = float(numstr)
         if isint:
             e_value.num = int(e_value.num)
 
-        e_value.type = JTYPE.NUMBER
+        e_value.type = JTYPE_NUMBER
         context.json = context.json[pos:]
         context.pos = pos
 
-        return PARSE_STATE_OK
+        return PARSE_STATE_OK, e_value
 
 
-def es_parse_string(context, e_value):
+def es_parse_string(context):
     pos = context.pos + 1
+    e_value = EsValue()
     e_value.str = ""
     try:
         while context.json[pos] != '"':
@@ -195,15 +206,16 @@ def es_parse_string(context, e_value):
                 pos += 1
 
     finally:
-        e_value.type = JTYPE.STRING
+        e_value.type = JTYPE_STRING
         context.json = context.json[pos + 1:]
         context.pos = 1
         if '\\u' in e_value.str:
             e_value.str = e_value.str.encode('latin-1').decode('unicode_escape')
-        return PARSE_STATE_OK
+        return PARSE_STATE_OK, e_value
 
 
-def es_parse_array(context, e_value):
+def es_parse_array(context):
+    e_value = EsValue()
     e_value.array = []
     context.pos += 1
     while re.compile('[ \t\n]+').match(context.json[context.pos]):
@@ -211,13 +223,14 @@ def es_parse_array(context, e_value):
     pos = context.pos
 
     if context.json[pos] == ']':
-        e_value.type == JTYPE.ARRAY
-        return PARSE_STATE_OK
+        e_value.type = JTYPE_ARRAY
+        context.json = context.json[pos+1:]
+        return PARSE_STATE_OK, e_value
     while 1:
         es_parse_whitespace(context)
-        son_e_value = EsValue(JTYPE.UNKNOW)
-        res = es_parse_value(context, son_e_value)
-        if res != PARSE_STATE_OK:
+        array_res  = es_parse_value(context)
+        son_e_value = array_res[1]
+        if array_res[0] != PARSE_STATE_OK:
             break
         es_parse_whitespace(context)
         pos = 0
@@ -232,37 +245,42 @@ def es_parse_array(context, e_value):
             context.pos = pos
             context.json = context.json[pos:]
             e_value.array.append(get_element(son_e_value))
-            e_value.type = JTYPE.ARRAY
-            return PARSE_STATE_OK
+            e_value.type = JTYPE_ARRAY
+            return PARSE_STATE_OK, e_value
 
         e_value.array.append(get_element(son_e_value))
-    return PARSE_STATE_INVALID_VALUE
+    return PARSE_STATE_INVALID_VALUE, e_value
 
 
-def es_parse_object(context, e_value):
+def es_parse_object(context):
+    e_value = EsValue()
     e_value.obj = {}
     context.pos += 1
     while re.compile('[ \t\n]+').match(context.json[context.pos]):
         context.pos += 1
     pos = context.pos
 
-    if context.json[pos] == '}':
-        e_value.type == JTYPE.OBJECT
-        return PARSE_STATE_OK
+    if context.json[pos] == '}':    # 检测合法空串
+        context.json = context.json[pos + 1:]
+        e_value.type = JTYPE_OBJECT
+        return PARSE_STATE_OK, e_value
     while 1:
-        son_key_typevalue = EsValue(JTYPE.UNKNOW)
-        res = es_parse_value(context, son_key_typevalue)
-        if res != PARSE_STATE_OK:
+        obe_res = es_parse_value(context)
+        son_key_state = obe_res[0]
+        son_key_typevalue = obe_res[1]
+        if son_key_state != PARSE_STATE_OK:
             break
         es_parse_whitespace(context)
         pos = 0
 
-        son_value_typevalue = EsValue(JTYPE.UNKNOW)
+        son_value_typevalue = EsValue()
         if context.json[pos] == ':':
             while re.compile('[ \t\n]+').match(context.json[context.pos]):
                 context.pos += 1
-            res2 = es_parse_value(context, son_value_typevalue)
-            if res2 != PARSE_STATE_OK:
+            res2 = es_parse_value(context)
+            son_value_state = res2[0]
+            son_value_typevalue = res2[1]
+            if son_value_state != PARSE_STATE_OK:
                 break
             es_parse_whitespace(context)
 
@@ -276,74 +294,123 @@ def es_parse_object(context, e_value):
             context.pos = pos
             context.json = context.json[pos:]
             e_value.obj[get_element(son_key_typevalue)] = get_element(son_value_typevalue)
-            e_value.type = JTYPE.OBJECT
-            return PARSE_STATE_OK
+            e_value.type = JTYPE_OBJECT
+            return PARSE_STATE_OK, e_value
+        elif son_value_typevalue.type == 7:
+            raise MyException("PARSE_STATE_INVALID_VALUE, object format error")
 
         e_value.obj[get_element(son_key_typevalue)] = get_element(son_value_typevalue)
 
 
-def es_parse_value(context, e_value):
+def es_parse_value(context):
     """分析函数，解析字符串当前字符
 
     :param context:  string list
-    :param e_value:  字符串解析后对应的 结构对象
     :return: 解析是否成功的状态码PARSE_STATE
     """
     if context.json[context.pos] == 't':
-        return es_parse_literal(context, e_value, "true", JTYPE.TRUE)
+        return es_parse_literal(context, "true", JTYPE_TRUE)
     if context.json[context.pos] == 'f':
-        return es_parse_literal(context, e_value, "false", JTYPE.FALSE)
+        return es_parse_literal(context, "false", JTYPE_FALSE)
     if context.json[context.pos] == 'n':
-        return es_parse_literal(context, e_value, "null", JTYPE.NULL)
+        return es_parse_literal(context, "null", JTYPE_NULL)
 
     if context.json[context.pos] == '"':
-        return es_parse_string(context, e_value)
+        return es_parse_string(context)
     if context.json[context.pos] == '[':
-        return es_parse_array(context, e_value)
+        return es_parse_array(context)
     if context.json[context.pos] == '{':
-        return es_parse_object(context, e_value)
+        return es_parse_object(context)
 
     if context.json[context.pos] == '\0':
         return PARSE_STATE_EXPECT_VALUE
     if re.compile('^[-+0-9]+').match(context.json[context.pos]):
-        return es_parse_number(context, e_value)
+        return es_parse_number(context)
     else:
         return PARSE_STATE_INVALID_VALUE
 
 
-def es_parse(e_value, j_string):
+def es_parse(j_string):
     """用来将json string 解析成树型结构的对象
 
-    :param e_value: json解析后的树型结构对象
     :param j_string: json的string
-    :return: 解析是否成功的状态码PARSE_STATE
+    :return: 解析后的结构
     """
     c = Context(j_string)
-    v = e_value
 
     es_parse_whitespace(c)
-    res = es_parse_value(c, v)
+    parse_res = es_parse_value(c)
 
-    if res == PARSE_STATE_OK:
+    if parse_res[0] == PARSE_STATE_OK:
         es_parse_whitespace(c)
         if c.json:
-            res = PARSE_STATE_ROOT_NOT_SINGULAR
-    return res
+            raise MyException("PARSE_STATE_INVALID_VALUE")
+            # error_res = PARSE_STATE_ROOT_NOT_SINGULAR, res[1]
+            # error_res = "bad json"
+            # return error_res
+
+    return get_element(parse_res[1])
+
+
+def es_stringify(python_obj):
+    return es_stringify_value(python_obj)
+
+def es_stringify_value(obj):
+    obj_str = ""
+    if type(obj) == type([]):
+        obj_str += '['
+        for i in obj:
+            obj_str += es_stringify_value(i) + ', '
+        obj_str = obj_str[:-2]
+        obj_str += ']'
+
+    if type(obj) == type(1024):
+        obj_str += str(obj)
+
+    if type(obj) == type({}):
+        obj_str += '{'
+
+    return obj_str
 
 
 if __name__ == '__main__':
-    while 1:
-        print("input string : ")
-        str1 = raw_input()      # python 2.7
-        # str = input("input string = ")        #python 3X
-        if len(str1) == 0:
-            continue
-        t = EsValue(JTYPE.UNKNOW)
-        parse_state = es_parse(t, str1)
+    d = {
+        "title": "Design Patterns",
+        "subtitle": "Elements of Reusable Object-Oriented Software",
+        "author": [
+            "Erich Gamma",
+            "Richard Helm",
+            "Ralph Johnson",
+            "John Vlissides"],
+        "year": 2009,
+        "weight": 1.8,
+        "hardcover": 1,
+        "publisher": {
+            "Company": "Pearson Education",
+            "Country": "India"
+        },
+        "website": 2
+    }
 
-        if parse_state != 1:
-            print("bad json\n")
-            continue
-        print(state_dict[parse_state] + " Json type is " + type_dict[gettype(t)] + ",  Output is: ")
-        print(get_element(t))
-        print('\n')
+    strrr = json.dumps(d)
+    # print strrr
+
+    # print(es_parse(strrr))
+
+    myobj = [1,2,4]
+    print(es_stringify_value(myobj))
+
+    while 1:
+        try:
+            print("input string : ")
+            str1 = raw_input()
+            if len(str1) == 0:
+                continue
+            res = es_parse(str1)
+
+            print(res)
+
+
+        except MyException, e:
+            print e.message
+
