@@ -6,16 +6,18 @@
 * 手写递归下降的解释器（recursive descent parser）
 * 使用Python语言（3.6）
 * 解释器和生成器少于500行
+* 使用cProfile完成性能分析和优化
 
 ## 实现内容
 - [x] 解析字面量(true false null)
 - [x] 解析数字
 - [x] 解析字符串
-- [ ] 解析Unicode
+- [x] 解析Unicode
 - [x] 解析数组
 - [x] 解析对象
 - [x] 单元测试
-- [ ] 生成器
+- [x] 生成器
+- [ ] cProfile性能优化
 
 ## 详细介绍
 ### JSON是什么
