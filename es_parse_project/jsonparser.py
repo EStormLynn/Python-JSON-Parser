@@ -55,12 +55,8 @@ class EsValue(object):
 
 class Context(object):
     def __init__(self, jstr):
-        self.json = list(jstr)
+        self.json = jstr
         self.pos = 0
-
-
-def isdigit(ch):
-    return re.compile('[\d]+').match(ch)
 
 
 def is1t9(ch):
@@ -134,8 +130,7 @@ def es_parse_number(context):
 
         elif not is1t9(context.json[pos]):
             raise MyException("PARSE_STATE_INVALID_VALUE, number error")
-
-        while isdigit(context.json[pos]):
+        while context.json[pos].isdigit():
             pos += 1
 
         if context.json[pos] != '.' and context.json[pos] != 'e' and context.json[pos] != 'E':
@@ -144,20 +139,20 @@ def es_parse_number(context):
         if context.json[pos] == '.':
             isint = 0
             pos += 1
-            if not isdigit(context.json[pos]):
+            if not context.json[pos].isdigit():
                 raise MyException("PARSE_STATE_INVALID_VALUE, number error")
                 # return PARSE_STATE_INVALID_VALUE, e_value
-            while isdigit(context.json[pos]):
+            while context.json[pos].isdigit():
                 if pos >= len(context.json):
                     break
                 pos += 1
 
         if re.compile('[Ee]+').match(context.json[pos]):
             pos += 1
-            if not isdigit(context.json[pos]):
+            if not context.json[pos].isdigit():
                 raise MyException("PARSE_STATE_INVALID_VALUE, number error")
                 # return PARSE_STATE_INVALID_VALUE, e_value
-            while isdigit(context.json[pos]):
+            while context.json[pos].isdigit():
                 pos += 1
         # else:
         #     raise MyException("PARSE_STATE_INVALID_VALUE, number error")
@@ -364,7 +359,7 @@ def es_parse(j_string):
 
     except MyException, e:
         print(e.message)
-    except (TypeError,SyntaxError), e:
+    except (TypeError, SyntaxError), e:
         print(e)
 
 
@@ -431,14 +426,6 @@ if __name__ == '__main__':
         },
         "website": 2
     }
-    # d = "张钊"
-    #
-    # d = """[
-    # 1,2,3,
-    # 4,
-    # [5, 6, 7],
-    # {1:2, 3:4}
-    # ]"""
     d_str = json.dumps(d)
 
     # print(es_parse(d))
@@ -455,16 +442,13 @@ if __name__ == '__main__':
 
 
 
-    while 1:
-        # try:
-        print("input string : ")
-        str1 = raw_input()
-        if len(str1) == 0:
-            continue
-        res = es_parse(str1)
-
-        print(res)
-
-        # except MyException, e:
-        #     print e.message
+    # while 1:
+    #     # try:
+    #     print("input string : ")
+    #     str1 = raw_input()
+    #     if len(str1) == 0:
+    #         continue
+    #     res = es_parse(str1)
+    #
+    #     print(res)
 
