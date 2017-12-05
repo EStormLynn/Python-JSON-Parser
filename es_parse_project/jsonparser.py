@@ -20,20 +20,6 @@ JTYPE_FALSE = 5
 JTYPE_TRUE = 6
 JTYPE_UNKNOW = 7
 
-state_dict = {1: "ok",
-              2: "expect_value",
-              3: "invalid_value",
-              4: "root_not_singular"}
-
-type_dict = {0: "number",
-             1: "string",
-             2: "array",
-             3: "object",
-             4: "null",
-             5: "false",
-             6: "true",
-             7: "unknow"}
-
 PARSE_STATE_OK = 1
 PARSE_STATE_EXPECT_VALUE = 2
 PARSE_STATE_INVALID_VALUE = 3
@@ -97,8 +83,6 @@ def es_parse_whitespace(context):
         return
     pos = 0
     while re.compile('[\s]+').match(context.json[pos]):
-    # while context.json[pos] == ' ' or context.json[pos] == '\n' or context.json[pos] == '\t':
-    # while context.json[pos] == ' ' or context.json[pos] == '\n':
         pos += 1
     context.json = context.json[pos:]
 
@@ -205,7 +189,8 @@ def es_parse_string(context):
         e_value.type = JTYPE_STRING
         context.json = context.json[pos + 1:]
         context.pos = 1
-        e_value.str = e_value.str.encode('latin-1').decode('unicode_escape')
+        if '/u' in e_value.str:
+            e_value.str = e_value.str.encode('latin-1').decode('unicode_escape')
         return PARSE_STATE_OK, e_value
 
 
@@ -265,20 +250,19 @@ def es_parse_object(context):
         son_key_state, son_key_typevalue = obe_res
         if son_key_state != PARSE_STATE_OK:
             break
-        if type(get_element(son_key_typevalue)) is not type("string") and \
-                type(get_element(son_key_typevalue)) is not type(1) and \
-                type(get_element(son_key_typevalue)) is not type(u"unicode"):
+        if not isinstance(get_element(son_key_typevalue), basestring) and \
+           not isinstance(get_element(son_key_typevalue), int) and \
+           not isinstance(get_element(son_key_typevalue), unicode):
             raise MyException("json object key %s error, must be string or int" % type(get_element(son_key_typevalue)))
         es_parse_whitespace(context)
         pos = 0
 
-        son_value_typevalue = EsValue()
+        # son_value_typevalue = EsValue()
         if context.json[pos] == ':':
             while re.compile('[\s]+').match(context.json[context.pos]):
                 context.pos += 1
             res2 = es_parse_value(context)
-            son_value_state = res2[0]
-            son_value_typevalue = res2[1]
+            son_value_state, son_value_typevalue = res2
             if son_value_state != PARSE_STATE_OK:
                 break
             es_parse_whitespace(context)
@@ -332,7 +316,7 @@ def es_parse_value(context):
         return PARSE_STATE_INVALID_VALUE, e_value
 
 
-def es_parse(j_string):
+def es_loads(j_string):
     """用来将json string 解析成树型结构的对象
 
     :param j_string: json的string
@@ -349,9 +333,6 @@ def es_parse(j_string):
             es_parse_whitespace(c)
             if c.json:
                 raise MyException("PARSE_STATE_INVALID_VALUE,format error")
-                # error_res = PARSE_STATE_ROOT_NOT_SINGULAR, res[1]
-                # error_res = "bad json"
-                # return error_res
         else:
             raise MyException("PARSE_STATE_INVALID_VALUE")
 
@@ -363,16 +344,26 @@ def es_parse(j_string):
         print(e)
 
 
-def es_stringify(obj):
+def es_load(filepath):
+    """
+
+    :param filepath: load的文件名
+    :return: 解析后的Python object
+    """
+    f = open(filepath, 'r')
+    fread = unicode(f.read(), "UTF-8")
+    return es_loads(fread)
+
+
+def es_dumps(obj):
     obj_str = ""
 
-    if isinstance(obj, True):
+    if isinstance(obj, bool):
         if obj is True:
             obj_str += "True"
         else:
             obj_str += "False"
-
-    elif isinstance(obj, None):
+    elif obj is None:
         obj_str += "null"
 
     elif isinstance(obj, basestring):
@@ -387,7 +378,7 @@ def es_stringify(obj):
         obj_str += '['
         if len(obj):
             for i in obj:
-                obj_str += es_stringify(i) + ", "
+                obj_str += es_dumps(i) + ", "
             obj_str = obj_str[:-2]
         obj_str += ']'
 
@@ -398,57 +389,22 @@ def es_stringify(obj):
         obj_str += '{'
         if len(obj):
             for (k, v) in obj.items():
-                obj_str += es_stringify(k) + ": "
-                obj_str += es_stringify(v) + ", "
+                obj_str += es_dumps(k) + ": "
+                obj_str += es_dumps(v) + ", "
             obj_str = obj_str[:-2]
         obj_str += '}'
 
     return obj_str
 
 
-if __name__ == '__main__':
-    d = {
-            "姓名": "jack",
-         "title": "Design Patterns",
-        "subtitle": "Elements of Reusable Object-Oriented Software",
-        "author":
-            [
-            "Erich Gamma",
-            "Richard Helm",
-            "Ralph Johnson",
-            "John Vlissides"],
-        "year": -2009,
-        "weight": 1.8,
-        "hardcover": 1,
-        "publisher": {
-            "Company": "Pearson Education",
-            "Country": "India"
-        },
-        "website": 2
-    }
-    d_str = json.dumps(d)
+def es_dump(obj, filename):
+    """Python object encode to string, save file
 
-    # print(es_parse(d))
-
-
-
-    # print(d_str)
-    # print(es_stringify(d))
-
-    print('\n')
-    print(json.loads(d_str))
-    print(es_parse(d_str))
-
-
-
-
-    # while 1:
-    #     # try:
-    #     print("input string : ")
-    #     str1 = raw_input()
-    #     if len(str1) == 0:
-    #         continue
-    #     res = es_parse(str1)
-    #
-    #     print(res)
-
+    :param obj: Python对象
+    :param filename: 保存文件名
+    :return: object string
+    """
+    f = open(filename, 'w')
+    fwrite = es_dumps(obj)
+    f.write(fwrite[1:-1])
+    return fwrite
