@@ -148,6 +148,10 @@ jforProfile = {"type":"FeatureCollection","features":[
 ]]}}
 ]}
 
+
+
 # jstring = json.dumps(jforProfile)
 # cProfile.run("print(es_loads(jstring))")
+
+cProfile.run("print(es_load(\"china.json\"))")
 

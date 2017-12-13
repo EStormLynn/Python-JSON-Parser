@@ -125,7 +125,6 @@ def es_parse_number(context):
             pos += 1
             if not context.json[pos].isdigit():
                 raise MyException("PARSE_STATE_INVALID_VALUE, number error")
-                # return PARSE_STATE_INVALID_VALUE, e_value
             while context.json[pos].isdigit():
                 if pos >= len(context.json):
                     break
@@ -135,11 +134,8 @@ def es_parse_number(context):
             pos += 1
             if not context.json[pos].isdigit():
                 raise MyException("PARSE_STATE_INVALID_VALUE, number error")
-                # return PARSE_STATE_INVALID_VALUE, e_value
             while context.json[pos].isdigit():
                 pos += 1
-        # else:
-        #     raise MyException("PARSE_STATE_INVALID_VALUE, number error")
 
     finally:
         numstr = ''.join(context.json[star_pos:pos])
@@ -155,6 +151,20 @@ def es_parse_number(context):
 
 
 def es_parse_string(context):
+    charlist = {
+        '\\"': '\"',
+        "\\'": "\'",
+        "\\b": "\b",
+        "\\f": "\f",
+        "\\r": "\r",
+        "\\n": "\n",
+        "\\t": "\t",
+        "\\u": "u",
+        "\\\\": "\\",
+        "\\/": "/",
+        "\\a": "\a",
+        "\\v": "\v"
+    }
     pos = context.pos + 1
     e_value = EsValue()
     e_value.str = ""
@@ -162,20 +172,9 @@ def es_parse_string(context):
         while context.json[pos] != '"':
             # 处理转意字符
             if context.json[pos] == '\\':
-                if context.json[pos + 1] == '\\':
-                    e_value.str += '\\'
-                elif context.json[pos + 1] == '\"':       # "
-                    e_value.str += '\"'
-                elif context.json[pos + 1] == 'n':
-                    e_value.str += '\n'
-                elif context.json[pos + 1] == 'b':
-                    e_value.str += '\b'
-                elif context.json[pos + 1] == 'f':
-                    e_value.str += '\f'
-                elif context.json[pos + 1] == 'r':
-                    e_value.str += '\r'
-                elif context.json[pos + 1] == 't':
-                    e_value.str += '\t'
+                c = context.json[pos:pos + 2]
+                if c in charlist:
+                    e_value.str += charlist[c]
                 else:
                     e_value.str += ''.join(context.json[pos])
                     pos += 1
@@ -408,3 +407,29 @@ def es_dump(obj, filename):
     fwrite = es_dumps(obj)
     f.write(fwrite[1:-1])
     return fwrite
+
+
+if __name__ == '__main__':
+    data = {
+        "姓名": "jack",
+        "title": "Design Patterns",
+        "subtitle": "Elements of Reusable Object-Oriented Software",
+        "author":
+            [
+                "Erich Gamma",
+                "Richard Helm",
+                "Ralph Johnson",
+                "John Vlissides"],
+        "year": -2009,
+        "weight": 1.8,
+        "hardcover": 1,
+        "publisher": {
+            "Company": "Pearson Education",
+            "Country": "India"
+        },
+        "website": 2
+    }
+
+    datastring = json.dumps(data)
+    res = es_loads(datastring)
+    print(res)
