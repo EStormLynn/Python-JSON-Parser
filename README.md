@@ -4,7 +4,7 @@
 从零开始写一个JSON的解析器，特征如下：
 * 符合标准的JSON解析器和生成器
 * 手写递归下降的解释器（recursive descent parser）
-* 使用Python语言~~(3.6)~~(2.7)
+* 使用Python语言(2.7)
 * 解释器和生成器少于500行
 * 使用cProfile完成性能分析和优化
 
@@ -203,7 +203,7 @@ def es_parse_string(context):
         self.assertEqual(type(self.parse("\"   \u751F\u5316\u5371\u673A  \"")), type("string"))
 ```
 
-### es_dumps函数
+### es_dumps函数,json生成器
 将python dict结构dumps成json串
 ```python
 def es_dumps(obj):
@@ -259,7 +259,9 @@ cProfile.run("print(es_load(\"china.json\"))")
 
 ```
 修改部分代码使用python build-in，优化context结构，string在copy的时候比list性能显著提高。消耗时间从20s降到1s
-![](http://oo8jzybo8.bkt.clouddn.com/1.jpg)
-![](http://oo8jzybo8.bkt.clouddn.com/2.jpg)
-![](http://oo8jzybo8.bkt.clouddn.com/3.jpg)
+<div align=center><img src="http://oo8jzybo8.bkt.clouddn.com/1.jpg" width="663" height="350" alt="1"/></div>
+
+<div align=center><img src="http://oo8jzybo8.bkt.clouddn.com/2.jpg" width="663" height="350" alt="1"/></div>
+
+<div align=center><img src="http://oo8jzybo8.bkt.clouddn.com/3.jpg" width="663" height="350" alt="1"/></div>
 
