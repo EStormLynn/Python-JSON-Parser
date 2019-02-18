@@ -259,9 +259,5 @@ cProfile.run("print(es_load(\"china.json\"))")
 
 ```
 修改部分代码使用python build-in，优化context结构，string在copy的时候比list性能显著提高。消耗时间从20s降到1s
-<div align=center><img src="http://oo8jzybo8.bkt.clouddn.com/1.jpg" width="463" height="200" alt="1"/></div>
 
-<div align=center><img src="http://oo8jzybo8.bkt.clouddn.com/2.jpg" width="463" height="200" alt="1"/></div>
-
-<div align=center><img src="http://oo8jzybo8.bkt.clouddn.com/3.jpg" width="463" height="200" alt="1"/></div>
 
