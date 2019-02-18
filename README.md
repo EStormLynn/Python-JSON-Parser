@@ -119,7 +119,7 @@ JSON number类型，number 是以十进制表示，它主要由 4 部分顺序�
 
 JSON 标准 [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf) 采用图的形式表示语法，可以更直观地看到解析时可能经过的路径：
 
-![](http://oo8jzybo8.bkt.clouddn.com/ECMA_number.png)
+![](https://estorm-1254116789.cos.ap-chengdu.myqcloud.com/jsonParseNum.png)
 
 python是一种动态语言，所以es_value中num可以是整数也可以是小数，
 ```python
@@ -149,7 +149,7 @@ if isint:
 ### 解析字符串
 对于字符串中存在转义字符，在load的时候须要处理转义字符,\u的情况，进行编码成unicode
 
-![](http://oo8jzybo8.bkt.clouddn.com/ECMA_string.png)
+![](https://estorm-1254116789.cos.ap-chengdu.myqcloud.com/jsonParseStr.png)
 
 ```python
 def es_parse_string(context):
